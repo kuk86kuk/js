@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!-- 
+ 
+Обязательное задание.
+
+Необходимо создать переменную name, записать в эту переменную свое имя.
+Необходимо также создать переменную admin и присвоить этой переменной значение
+из переменной name.
+Вывести значение переменной admin в консоль.
+-->
+<script>
+  "use strict";
+
+  const admin = 'Egor';
+
+  function logInSystem(name) {
+    if (admin === name) {
+      return console.log(`Добро пожаловать администатор - ${name}`)
+    }
+    return console.log(`Вы не администатор - ${name}`)
+  }
+
+  logInSystem(admin);
+  logInSystem("Egor");
+  logInSystem("EvilMan")
+
+
+  // Здесь пишем решение, данный комментарий необходимо стереть.
+</script>
+</body>
+</html>
