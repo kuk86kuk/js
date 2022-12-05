@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание, но желательно сделать.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для поста в социальной сети.
+Названия: `PostES5` для es5 стиля и `PostES6` для es6 стиля.
+Пост должен хранить:
+1. Автора поста (имени достаточно).
+2. Текст поста.
+3. Дату и время последнего изменения поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Каждому экземпляру объекта должен быть доступен метод `edit`, который будет
+менять текст поста.
+
+---
+
+Необходимо создать функцию-конструктор/класс для закрепленного поста в
+социальной сети.
+Названия: `AttachedPostES5` для es5 стиля и `AttachedPostES6` для es6 стиля.
+Закрепленный пост должен наследоваться от обычного поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Закрепленный пост должен иметь свойство `highlighted`, в котором по умолчанию
+будет лежать значение false (это свойство будет обозначать, будет ли наш
+закрепленный пост подсвечен).
+У экземпляров объекта закрепленного поста должен быть метод с названием
+`makeTextHighlighted`, который сделает так, чтобы наш пост стал подсвеченным
+(будет менять свойство `highlighted`).
+
+---
+
+Подсказки:
+1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения
+поста", это значит что если пост кто-то изменит (например вызовет какой-то
+метод, который изменит что-то в посте), дата и время последнего изменения
+поста также должна измениться.
+3. Выполняйте все по порядку, не стоит пытаться сделать все сразу, иначе можно
+что-нибудь пропустить.
+4. Если непонятно условие - задайте вопрос.
+-->
+<script>
+  "use strict";
+
+  class PostES6 {
+    constructor (name) {
+      this.name = name
+      this.id = 0
+      this.object = {}
+    }
+
+    createPost () {
+      const post = prompt('Ведите ваше пост');
+      const createTimePost = new Date();
+      if (post === "" || post == null) {
+        console.log('Вы нечего не вели');
+        return false
+      }
+      this.id++
+      this.object[this.id] = [this.name, post, createTimePost] 
+      
+    }
+
+    deletePostUser (id) {
+      console.log(`Удаление поста ${this.object[id]}`)
+      delete this.object[id]
+    }
+
+    showPostUser () {
+      for (const key in this.object) {
+        console.log(`Автор поста - ${this.object[key][0]}`);
+        console.log(`Поста - ${this.object[key][1]}`);
+        console.log(`Время - ${this.object[key][2]}`);
+      }
+    }
+
+    editPostUser (id) {
+      if (id > this.id) {
+        console.log(`Такого поста не существует ${this.object[id]}`)
+        return false
+      }
+      const post = prompt(`Изменение поста ${this.object[id]}`);
+      const createTimePost = new Date();
+      if (post === "" || post == null) {
+        console.log('Вы нечего не вели');
+        return false
+      }
+      this.object[this.id] = [this.name, post, createTimePost] 
+    }
+  }
+
+  const userPES6 = new PostES6('Egor');
+  userPES6.createPost();
+  userPES6.createPost();
+  userPES6.showPostUser();
+  userPES6.deletePostUser(1);
+  userPES6.showPostUser();
+  userPES6.editPostUser(2);
+  userPES6.showPostUser();
+
+  // -------------------------------------------------------------------------------------------------------------------------
+  function AttachedPostES5 (name) {
+    this.name = name
+    this.id = 0
+    this.object = {}
+  }
+
+  AttachedPostES5.prototype.createPost = function () {
+    const post = prompt('Ведите ваше пост');
+      const createTimePost = new Date();
+      if (post === "" || post == null) {
+        console.log('Вы нечего не вели');
+        return false
+      }
+      this.id++
+      this.object[this.id] = [this.name, post, createTimePost] 
+  }
+
+  AttachedPostES5.prototype.deletePostUser = function (id) {
+    console.log(`Удаление поста ${this.object[id]}`)
+      delete this.object[id]
+  }
+
+  AttachedPostES5.prototype.showPostUser = function () {
+    for (const key in this.object) {
+        console.log(`Автор поста - ${this.object[key][0]}`);
+        console.log(`Поста - ${this.object[key][1]}`);
+        console.log(`Время - ${this.object[key][2]}`);
+      }
+  }
+
+  AttachedPostES5.prototype.editPostUser = function (id) {
+    if (id > this.id) {
+      console.log(`Такого поста не существует ${this.object[id]}`)
+      return false
+    }
+    const post = prompt(`Изменение поста ${this.object[id]}`);
+    const createTimePost = new Date();
+    if (post === "" || post == null) {
+      console.log('Вы нечего не вели');
+      return false
+    }
+    this.object[this.id] = [this.name, post, createTimePost] 
+  }
+  
+
+  const userPES5 = new PostES6('Anna');
+  userPES6.createPost();
+  userPES6.createPost();
+  userPES6.showPostUser();
+  userPES6.deletePostUser(1);
+  userPES6.showPostUser();
+  userPES6.editPostUser(3);
+  userPES6.showPostUser();
+</script>
+</body>
+</html>

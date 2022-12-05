@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+<script>
+  "use strict";
+
+  function ProductES5 (name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  ProductES5.prototype.make25Discount = function () {
+    this.price = (this.price * 75) / 100;
+  };
+
+  ProductES5.prototype.raise100Discount = function () {
+    this.price = this.price * 2;
+  };
+
+  ProductES5.prototype.sрowNamePrice = function () {
+    console.log(`Продукт - ${this.name}, цена ${this.price}`);
+  };
+
+  const PES5 = new ProductES5('Дрова', 100);
+
+  PES5.make25Discount();
+  PES5.make25Discount();
+  PES5.raise100Discount();
+  PES5.sрowNamePrice();
+
+
+  class ProductES6 {
+    constructor (name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  make25Discount () {
+    this.price = (this.price * 75) / 100;
+  }
+
+  raise100Discount () {
+    this.price = this.price * 2;
+  }
+
+  sрowNamePrice () {
+    console.log(`Продукт - ${this.name}, цена ${this.price}`);
+  }
+  }
+
+  const PES6 = new ProductES6('уголь', 1000);
+  PES6.make25Discount();
+  PES6.make25Discount();
+  PES6.raise100Discount();
+  PES6.sрowNamePrice();
+</script>
+</body>
+</html>
